@@ -31,7 +31,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <MAX31865.h>
+#include <./MAX31865/MAX31865.h>
 
 /**
  * The constructor for the MAX31865_RTD class registers the CS pin and

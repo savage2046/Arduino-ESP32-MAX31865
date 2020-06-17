@@ -1,7 +1,8 @@
-#ifndef _My_H
-#define _My_H
+#ifndef _MyTemperature_H
+#define _MyTemperature_H
 
 #include <stdint.h>
+#include <./MAX31865/MAX31865.h>
 /**
  * MAX31865参考电阻应该用400欧不知道为什么买来的模块都是用430欧
  * 而且把设置改成430后还是不准
@@ -18,17 +19,19 @@
 #define RATE_150_200 0.962347;
 #define RATE_200_250 0.947286;
 
-class My
+class MyTemperature
 {
+
 private:
-   
+    MAX31865_RTD *rtd;
+    uint16_t raw_0;
+    uint16_t raw_100;
+
 public:
-    My();
-    double temperature(uint16_t raw_0,uint16_t raw_100,uint16_t raw_resistance);
+    MyTemperature(uint8_t CS_PIN, uint16_t raw_0, uint16_t raw_100);
+    uint16_t getRawResistance();
+    double getTemperature();
+    void setRaw_0_100(uint16_t raw_0, uint16_t raw_100);
 };
 
-
-
-
-
-#endif 
+#endif
